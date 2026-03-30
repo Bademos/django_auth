@@ -11,23 +11,22 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
-print("=" * 50)
-print("DISABLING CSRF FOR ALL APIViews")
-print("=" * 50)
+import os
+####################################################################
+##########################CSRF disabling############################
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 
 # Переопределяем APIView для всех представлений
 from rest_framework.views import APIView
 APIView.dispatch = method_decorator(csrf_exempt)(APIView.dispatch)
-print("CSRF DISABLED!")
 
 
 CSRF_COOKIE_HTTPONLY = False
 CSRF_COOKIE_SECURE = False
 CSRF_USE_SESSIONS = False
 CSRF_COOKIE_NAME = 'csrftoken'
-
+####################################################################
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -93,10 +92,22 @@ WSGI_APPLICATION = 'auth_system.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+
+#DATABASES = {
+#   'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': BASE_DIR / 'db.sqlite3',
+#    }
+#}
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': '12345678',
+        'HOST': '172.18.36.127',
+        'PORT': '5432',
     }
 }
 

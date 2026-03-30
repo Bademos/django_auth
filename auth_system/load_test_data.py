@@ -72,8 +72,8 @@ def load_test_data():
 
     print("Тестовые данные загружены!")
     print("Пользователи:")
-    print("  admin@example.com / admin123")
-    print("  user@example.com / user123")
+    print("  admin@example.com / admin1234")
+    print("  user@example.com / user1234")
 
 
 if __name__ == "__main__":
